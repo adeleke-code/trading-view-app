@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Dashboard</title>
+    <!-- Include necessary CSS stylesheets -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css"
+    /> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+  </head>
+  <body>
+    <h1>Admin Dashboard</h1>
+    <h1>Welcome, {{ role }}</h1>
+    <h2>All Users Trading View</h2>
+
+    <!-- Create a container for the graph -->
+    <div class="graph-container">
+      <canvas id="profitLossChart"></canvas>
+    </div>
+    <table id="traders">
+      <thead>
+        <tr>
+          <th>Trader</th>
+          <th>Email</th>
+          <th>Profit/Loss</th>
+          <th>Final Amount</th>
+          <th>Starting Amount</th>
+          <th>Time Stamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in data %}
+        <tr>
+          <td>{{ item.trader.name }}</td>
+          <td>{{item.trader.email }}</td>
+          <td>{{ item.trading_view.profit_loss }}</td>
+          <td>{{ item.trading_view.final_amount }}</td>
+          <td>{{ item.trading_view.startoff_amount }}</td>
+          <td>{{ item.trading_view.created_at }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% load static %}
+
+    <!-- Include Chart.js library -->
+    <script src="{% static 'js/chart.min.js' %}"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Get the profit/loss values and timestamps from the 'data' variable passed from the view
+        console.log("{{ data }}")
+        var profitLossValues = [
+          {% for item in data %}
+            {{ item.profit_loss }},
+          {% endfor %}
+        ];
+
+        var timestamps = [
+          {% for item in data %}
+            {{ item.timestamp }},
+          {% endfor %}
+        ];
+        console.log("{{tem.profit_loss}}");
+        console.log(profitLossValues);
+
+        // Create a line chart using Chart.js
+        var ctx = document.getElementById("profitLossChart").getContext("2d");
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: timestamps,
+            datasets: [{
+              label: "Profit/Loss",
+              data: profitLossValues,
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

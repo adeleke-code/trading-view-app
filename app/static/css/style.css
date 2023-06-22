@@ -1,0 +1,64 @@
+/* styles.css */
+html {
+  background-color: rgba(120, 102, 31, 0.315) !important;
+}
+/* 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+} */
+
+#traders {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  
+  width: 70%;
+  margin: 0 auto;
+}
+
+#traders td,
+#traders th {
+  border: 1px solid #ddd;
+  font-size: 0.8rem;
+  padding: 6px;
+}
+
+#traders tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#traders tr:hover {
+  background-color: #ddd;
+
+}
+
+#traders th {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: left;
+  background-color: #04aa6d;
+
+  color: white;
+}
+
+.user_dashboard {
+  margin : 0 0 !important;
+  margin-right: auto !important;
+
+}

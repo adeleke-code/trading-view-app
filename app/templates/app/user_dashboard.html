@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Dashboard</title>
+    <!-- Include necessary CSS stylesheets -->
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css"
+    /> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/style.css' %}"
+    />
+  </head>
+  <body>
+    <h1>User Dashboard</h1>
+    <h1>Welcome, {{ data.trader.name }}</h1>
+    <h2>User Trading View</h2>
+
+    <!-- Create a container for the graph -->
+    <div class="graph-container">
+      <canvas id="profitLossChart"></canvas>
+    </div>
+    <table id="traders" class="user_dashboard">
+      <thead>
+        <tr>
+          <th>Profit/Loss</th>
+          <th>Final Amount</th>
+          <th>Starting Amount</th>
+          <th>Time stamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for view in data.trading_view %}
+        <tr>
+          <td>{{ view.profit_loss }}</td>
+          <td>{{ view.final_amount }}</td>
+          <td>{{ view.startoff_amount }}</td>
+          <td>{{ view.created_at}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Get the profit/loss values and timestamps from the 'data' variable passed from the view
+        console.log("{{ data }}")
+        var profitLossValues = [
+          {% for item in data %}
+            {{ item.profit_loss }},
+          {% endfor %}
+        ];
+
+        var timestamps = [
+          {% for item in data %}
+            "{{ item.timestamp }}",
+          {% endfor %}
+        ];
+        console.log(timestamps);
+        console.log(profitLossValues);
+
+        // Create a line chart using Chart.js
+        var ctx = document.getElementById("profitLossChart").getContext("2d");
+        new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: timestamps,
+            datasets: [{
+              label: "Profit/Loss",
+              data: profitLossValues,
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
