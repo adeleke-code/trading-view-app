@@ -8,6 +8,7 @@ fake-factory==9999.9.9
 Faker==18.10.1
 pymongo==3.12.1
 python-dateutil==2.8.2
+python-dotenv==1.0.0
 pytz==2023.3
 six==1.16.0
 sqlparse==0.2.4
