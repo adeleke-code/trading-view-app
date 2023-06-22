@@ -3,8 +3,6 @@ from django.http.response  import HttpResponse
 from .generators import simulate_profit_loss
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate, login
 from app.models import TradingView
 import random 
 
@@ -31,7 +29,6 @@ def login(request):
         email = request.POST.get('email')
         user = User.objects.filter(email=email).first()
         if user:
-            # login(user) 
             if user.role == 'admin':
                 return redirect('admin_dashboard')  
             else:
@@ -60,30 +57,3 @@ def login(request):
             return HttpResponse('User does not exist')
         
     return render(request, 'home.html')
-
-# @login_required
-# def trader_dashboard(request):
-#     email = request.user.email
-#     trader = User.objects.get(email=email)
-
-#     starting_amount = 100 
-#     profit_loss = random.uniform(-50, 50)  
-#     final_amount = starting_amount + profit_loss
-    
-#     trader.profit_loss = profit_loss
-#     trader.final_amount = final_amount
-#     trader.save()
-
-#     TradingView.objects.create(
-#         startoff_amount=starting_amount,
-#         profit_loss=profit_loss,
-#         final_amount=final_amount,
-#         user=trader
-#     )
-
-#     return redirect('dashboard')
-
-
-def trade_graph(request):
-    pass
-
