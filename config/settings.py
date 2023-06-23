@@ -28,12 +28,14 @@ SECRET_KEY = "sceretkey"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://trade-view-app-production.up.railway.app', '127.0.0.1']
+ALLOWED_HOSTS = ['trade-view-app-production.up.railway.app', '127.0.0.1']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+
+    #default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +45,6 @@ INSTALLED_APPS = [
 
     #third party apps
     'whitenoise.runserver_nostatic',
-
 
     #local apps
     'app'
