@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     #third party apps
     'whitenoise.runserver_nostatic',
 
@@ -93,10 +93,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'demodatabase',
+        'NAME': os.getenv("db_name"),
+        'CLIENT': {
+           'host': os.getenv("db_host"),
+        }
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
