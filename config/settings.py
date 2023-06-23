@@ -28,7 +28,7 @@ SECRET_KEY = "sceretkey"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['trade-view-app-production.up.railway.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -96,9 +96,15 @@ DATABASES = {
         'NAME': os.getenv("db_name"),
         'CLIENT': {
            'host': os.getenv("db_host"),
+           'port': os.getenv("db_port"),
+           'username': os.getenv("db_username"),
+           'password': os.getenv("db_password"),
+
         }
     }
 }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
