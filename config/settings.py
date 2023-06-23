@@ -102,14 +102,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'ENFORCE_SCHEMA': True,
-        'NAME': os.getenv("db_name"),
+        'NAME': 'demo_db',
         'CLIENT': {
-            'host': os.getenv("db_host"),
+            'host': 'cluster3.8uf3l.mongodb.net',
+            'username': 'adeleke-code',
+            'password': '2xjSKSyaSYNMpcvR',
+            'authSource': 'admin',
+            'authMechanism': 'SCRAM-SHA-1',
         },
     }
 }
-
 
 
 # Password validation

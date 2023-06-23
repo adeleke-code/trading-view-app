@@ -1,0 +1,8 @@
+version: 1
+builds:
+  - name: Django
+    env: python=3.11.1
+    scripts:
+      - pip install -r requirements.txt
+      - python manage.py makemigrations
+      - python manage.py migrate
