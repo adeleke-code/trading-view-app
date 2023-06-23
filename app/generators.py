@@ -5,7 +5,7 @@ from app.models import TradingView
 User = get_user_model()
 
 def simulate_profit_loss():
-    traders = User.objects.filter(role='user')
+    traders = User.objects.filter(role='trader')
 
     data = []
     for trader in traders:
