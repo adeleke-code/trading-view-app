@@ -28,7 +28,7 @@ SECRET_KEY = "sceretkey"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['trade-view-app-production.up.railway.app']
 
 
 # Application definition
