@@ -28,7 +28,7 @@ SECRET_KEY = "sceretkey"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://trade-view-app-production.up.railway.app/']
+ALLOWED_HOSTS = ['https://trade-view-app-production.up.railway.app', '127.0.0.1']
 
 
 # Application definition
@@ -84,25 +84,31 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'djongo',
+#         'NAME': os.getenv("db_name"),
+#         'CLIENT': {
+#            'host': os.getenv("db_host"),
+#            'port': os.getenv("db_port"),
+#            'username': os.getenv("db_username"),
+#            'password': os.getenv("db_password"),
+
+#         }
 #     }
 # }
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
+        'ENFORCE_SCHEMA': True,
         'NAME': os.getenv("db_name"),
         'CLIENT': {
-           'host': os.getenv("db_host"),
-           'port': os.getenv("db_port"),
-           'username': os.getenv("db_username"),
-           'password': os.getenv("db_password"),
-
-        }
+            'host': os.getenv("db_host"),
+        },
     }
 }
+
 
 
 # Password validation
