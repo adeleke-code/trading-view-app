@@ -15,7 +15,6 @@ import os
 from dotenv import load_dotenv, find_dotenv
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -35,7 +34,7 @@ ALLOWED_HOSTS = ['trade-view-app-production.up.railway.app', '127.0.0.1']
 
 INSTALLED_APPS = [
 
-    #default apps
+    # default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,10 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #third party apps
+    # third party apps
     'whitenoise.runserver_nostatic',
 
-    #local apps
+    # local apps
     'app'
 ]
 
@@ -85,31 +84,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'djongo',
-#         'NAME': os.getenv("db_name"),
-#         'CLIENT': {
-#            'host': os.getenv("db_host"),
-#            'port': os.getenv("db_port"),
-#            'username': os.getenv("db_username"),
-#            'password': os.getenv("db_password"),
-
-#         }
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'demo_db',
-        'CLIENT': {
-            'host': 'cluster3.8uf3l.mongodb.net',
-            'username': 'adeleke-code',
-            'password': '2xjSKSyaSYNMpcvR',
-            'authSource': 'admin',
-            'authMechanism': 'SCRAM-SHA-1',
-        },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'HOST': "containers-us-west-123.railway.app",
+        'USER': "postgres",
+        'PASSWORD': "c4xcfdRqIUXLwKfCZW5N",
+        'PORT': "7607"
+
     }
 }
 
